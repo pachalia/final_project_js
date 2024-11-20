@@ -16,14 +16,5 @@ export class ListItem extends Component {
     this.$rootElement.innerText = `${this.state.date} - $`
     this.$rootElement.dataset.donateId = this.state.id
     this.$rootElement.append(amount, $deleteButton)
-    // this.$rootElement.addEventListener('click', this.deleteDonate.bind())
   }
-
-  // deleteDonate(e) {
-  //   if(e.target.className === 'delete-button'){
-  //     const asd = e.target.closest('div')
-  //     asd.remove()
-  //     console.log(asd)
-  //   }
-  // }
 }

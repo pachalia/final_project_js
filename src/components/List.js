@@ -1,6 +1,4 @@
 import { Component } from '../core/Component';
-import {App} from "./App";
-import {Form} from "./Form";
 
 export class List extends Component {
   setup() {
@@ -21,12 +19,10 @@ export class List extends Component {
 
   deleteItem(e){
     if(e.target.className ==='delete-button') {
-      const app = new App()
       const $itemElement = e.target.closest('div')
       const id = $itemElement.dataset.donateId
-      app.onItemDelete(id)
-      // this.app.onItemDelete(id)
-      // $itemElement.remove()
+      this.props.onDelete(id)
+      $itemElement.remove()
     }
   }
 }

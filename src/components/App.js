@@ -21,7 +21,7 @@ export class App extends Component {
     
     const donateForm = new Form({onSubmit: this.onItemCreate.bind(this)});
     this.$rootElement.appendChild(donateForm.$rootElement);
-    const donateList = new List();
+    const donateList = new List({onDelete: this.onItemDelete.bind(this)});
     this.donateList = donateList
     this.$rootElement.appendChild(donateList.$rootElement);
   }
@@ -30,11 +30,14 @@ export class App extends Component {
     const item = new ListItem({amount})
     this.state.donates.push(item)
     this.donateList.addItem(item)
-    this.state.total = this.state.total + amount
+    this.state.total += amount
     this.total.innerText = this.state.total
   }
 
   onItemDelete(id) {
-    console.log(this.state)
+    const deleteItem = this.state.donates.find((val) => val.state.id === id)
+    this.state.total -= deleteItem.state.amount
+    this.state.donates = this.state.donates.filter((val) => val.state.id !== id)
+    this.total.innerText = this.state.total
   }
 }
